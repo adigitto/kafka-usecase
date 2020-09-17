@@ -6,8 +6,8 @@ async function run(){
     {
         // Create kafka object so that we can connect to Kafka broker
         const kafka = new Kafka({
-            "clientID": "myapp",
-            "brokers": ["54.162.94.85:9092"]  //Thats the IP of my EC2 server running kafka broker
+            "clientId": "myapp",
+            "brokers": ["184.72.82.167:9092"]  //Thats the IP of my EC2 server running kafka broker
         })   
 
         // Create admin to create topics 
@@ -20,7 +20,7 @@ async function run(){
         // with 2 partions - User initials A-M and N-Z 
         await admin.createTopics({
             "topics": [{
-                "topic": "Users",
+                "topic": "Employees",
                 "numPartitions": 2
             }]
         })
@@ -30,5 +30,8 @@ async function run(){
     }
     catch(ex){
         console.error(`Something terrible happened ${ex}`)
+    }
+    finally{
+        process.exit(0);
     }
 }
